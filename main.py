@@ -13,18 +13,41 @@ def find_mismatch(text):
     opening_brackets_stack = []
     for i, next in enumerate(text):
         if next in "([{":
-            # Process opening bracket, write your code here
-            pass
+            opening_barckets_stack.append(Bracket(next,i))
+            
 
         if next in ")]}":
-            # Process closing bracket, write your code here
-            pass
+            if not opening_brackets_stack :
+                return i+1
+            
+            x = opening_brackets_stack.pop()
+            if not are_matching:
+                return i+1
+            
+    if opening_brackets_stack:
+        x = opening_brackets_stack.pop()
+        return x.position+1
+    return "Success"
+
+            
 
 
 def main():
-    text = input()
-    mismatch = find_mismatch(text)
-    # Printing answer, write your code here
+    a=input("F or I ->")
+    if a in "F":
+        filen=input("Insert name of file")
+        with open(filen,"r", izmanit = "latin1") as file:
+            text =file.read()
+        j=find_mismatch(text)
+        if j == "Success":
+            print(j)
+    elif a in "I":
+        text = input()
+        j=find_mismatch(text)
+        if j == "Success":
+            print(j)
+    else:
+        print("Input error")
 
 
 if __name__ == "__main__":
