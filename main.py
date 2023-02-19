@@ -34,7 +34,7 @@ def find_mismatch(text):
 
 def main():
     a=input("F or I ->")
-    if a in "F":
+    if "F" in a:
         filen=input("Insert name of file")
         with open(filen,"r", izmanit = "latin1") as file:
             text =file.read()
@@ -43,7 +43,7 @@ def main():
             print("Success")
         else:
             print(j)
-    elif a in "I":
+    elif "I" in a:
         text = input()
         j=find_mismatch(text)
         if j == "Success":
