@@ -4,17 +4,20 @@ from collections import namedtuple
 
 Bracket = namedtuple("Bracket", ["char", "position"])
 
+
 def are_matching(left, right):
     return (left + right) in ["()", "[]", "{}"]
+
 
 def find_mismatch(text):
     opening_brackets_stack = []
     for i, next in enumerate(text):
         if next in "([{":
-            opening_brackets_stack.append(Bracket(next,i))
+            opening_barckets_stack.append(Bracket(next,i))
+            
 
         if next in ")]}":
-            if not opening_brackets_stack:
+            if not opening_brackets_stack :
                 return i+1
             
             x = opening_brackets_stack.pop()
@@ -25,6 +28,9 @@ def find_mismatch(text):
         x = opening_brackets_stack.pop()
         return x.position+1
     return "Success"
+
+            
+
 
 def main():
     a=input("F or I ->")
@@ -46,6 +52,7 @@ def main():
             print(j)
     else:
         print("Input error")
+
 
 if __name__ == "__main__":
     main()
