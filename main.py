@@ -20,7 +20,7 @@ def find_mismatch(text):
             if not opening_brackets_stack :
                 return i+1
             
-            x = opening_brackets_stack.pop()
+            x = opening_brackets_stack.pop().char
             if not are_matching(x,next):
                 return i+1
             
