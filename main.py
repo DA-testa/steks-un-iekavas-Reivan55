@@ -40,11 +40,15 @@ def main():
             text =file.read()
         j=find_mismatch(text)
         if j == "Success":
+            print("Success")
+        else:
             print(j)
     elif a in "I":
         text = input()
         j=find_mismatch(text)
         if j == "Success":
+            print("Success")
+        else:
             print(j)
     else:
         print("Input error")
