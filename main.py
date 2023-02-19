@@ -13,45 +13,25 @@ def find_mismatch(text):
     opening_brackets_stack = []
     for i, next in enumerate(text):
         if next in "([{":
-            opening_barckets_stack.append(Bracket(next,i))
-            
+            opening_brackets_stack.append(Bracket(next, i + 1))
 
         if next in ")]}":
-            if not opening_brackets_stack :
-                return i+1
-            
-            x = opening_brackets_stack.pop()
-            if not are_matching:
-                return i+1
-            
-    if opening_brackets_stack:
-        x = opening_brackets_stack.pop()
-        return x.position+1
-    return "Success"
+            if not opening_brackets_stack:
+                return i + 1
+            top = opening_brackets_stack.pop()
+            if not are_matching(top.char, next):
+                return i + 1
 
-            
+    if opening_brackets_stack:
+        return opening_brackets_stack[0].position
+
+    return "Success"
 
 
 def main():
-    a=input("F or I ->")
-    if a in "F":
-        filen=input("Insert name of file")
-        with open(filen,"r", izmanit = "latin1") as file:
-            text =file.read()
-        j=find_mismatch(text)
-        if j == "Success":
-            print("Success")
-        else:
-            print(j)
-    elif a in "I":
-        text = input()
-        j=find_mismatch(text)
-        if j == "Success":
-            print("Success")
-        else:
-            print(j)
-    else:
-        print("Input error")
+    text = input()
+    mismatch = find_mismatch(text)
+    print(mismatch)
 
 
 if __name__ == "__main__":
